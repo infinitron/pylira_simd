@@ -15,7 +15,7 @@ from setuptools import find_packages
 setup(
     name="pylira_simd",
     version="0.0.1",
-    description="a minimal example package (with pybind11)",
+    description="Python bindings for LIRA with SIMD",
     author="Henry Schreiner",
     license="MIT",
     packages=find_packages(where="src"),
