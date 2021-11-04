@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ macos-latest, ubuntu-latest]
+        platform: [ubuntu-latest]
         python-version: ["3.9"]
 
     runs-on: ${{ matrix.platform }}
@@ -50,7 +50,7 @@ jobs:
     - name: Install dependencies (macOS)
       if: startsWith(runner.os, 'macOS')
       run: brew install tbb r electric-fence 
-      
+
     - name: Build and install
       run: pip install --verbose .[test]
 
