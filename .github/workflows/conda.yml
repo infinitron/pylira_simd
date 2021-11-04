@@ -40,7 +40,7 @@ jobs:
         run: conda build conda.recipe
 
       - name: Install dependencies
-        run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence
+        run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
 
       - name: Install
         run: conda install -c ${CONDA_PREFIX}/conda-bld/ pylira_simd
