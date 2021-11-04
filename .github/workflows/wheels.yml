@@ -47,7 +47,15 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: true
-        
+
+    - uses: actions/cache@v2
+      if: startsWith(runner.os, 'Linux')
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib
 
