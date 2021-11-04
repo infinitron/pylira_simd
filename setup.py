@@ -23,5 +23,5 @@ setup(
     cmake_install_dir="src/pylira_simd",
     include_package_data=True,
     extras_require={"test": ["pytest"]},
-    python_requires=">=3.7",
+    python_requires=">=3.9",
 )

@@ -24,6 +24,8 @@ endif()
 # Now we can find pybind11
 find_package(pybind11 CONFIG REQUIRED)
 find_package(Python COMPONENTS Interpreter Development)
+find_package(Python3)
+
 
 include_directories(src/extern/pybind11/include)
 
@@ -32,11 +34,11 @@ add_subdirectory(src/extern/highway)
 
 # Python method:
 Python_add_library(_pylira_simd MODULE src/main.cpp)
-cmake_policy(SET CMP0069 NEW)
 
 add_dependencies(_pylira_simd hwy)
 target_link_libraries(_pylira_simd INTERFACE pybind11::headers hwy)
 
+cmake_policy(SET CMP0069 NEW)
 # target_link_libraries(_pylira_simd hwy)
 set_target_properties(_pylira_simd PROPERTIES
                                 INTERPROCEDURAL_OPTIMIZATION TRUE
