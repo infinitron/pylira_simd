@@ -21,6 +21,7 @@ endif()
 
 find_package(pybind11 CONFIG REQUIRED)
 find_package(Python ${PYTHON_VERSION} REQUIRED COMPONENTS Development)
+find_package(Python3)
 
 
 include_directories(src/extern/pybind11/include)
@@ -45,10 +46,10 @@ target_link_libraries(_pylira_simd PUBLIC hwy R Rmath pthread tbb efence)
 target_compile_definitions(_pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
 # detect virtualenv and set Pip args accordingly
-if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
-  set(_pip_args)
-else()
-  set(_pip_args "--user")
-endif()
+# if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
+#   set(_pip_args)
+# else()
+#   set(_pip_args "--user")
+# endif()
 
 install(TARGETS _pylira_simd DESTINATION .)
