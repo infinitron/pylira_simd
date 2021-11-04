@@ -20,7 +20,7 @@ if(SKBUILD)
 endif()
 
 find_package(pybind11 CONFIG REQUIRED)
-find_package(Python ${PYTHON_VERSION} REQUIRED COMPONENTS Development)
+find_package(Python ${PYTHON_VERSION} REQUIRED COMPONENTS Interpreter Development)
 find_package(Python3)
 
 
