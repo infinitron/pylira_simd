@@ -26,7 +26,7 @@ include_directories(src/extern/pybind11/include)
 add_subdirectory(src/extern/highway)
 
 # Python method:
-Python_add_library(pylira_simd src/main.cpp)
+Python_add_library(pylira_simd MODULE src/main.cpp)
 cmake_policy(SET CMP0069 NEW)
 
 add_dependencies(pylira_simd hwy)
