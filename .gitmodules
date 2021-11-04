@@ -1,0 +1,3 @@
+[submodule "src/extern/highway"]
+	path = src/extern/highway
+	url = https://github.com/google/highway

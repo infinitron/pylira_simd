@@ -16,8 +16,10 @@ endif()
 
 # Now we can find pybind11
 find_package(pybind11 CONFIG REQUIRED)
+add_subdirectory(src/extern/highway)
 
 pybind11_add_module(_core MODULE src/main.cpp)
+add_dependencies(_core highway)
 
 target_compile_definitions(_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
