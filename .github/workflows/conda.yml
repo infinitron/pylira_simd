@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
-        run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+        run: sudo apt-get -y install libtbb-dev r-base-dev r-base-core r-base electric-fence r-mathlib
 
       - name: Install dependencies (macOS)
         if: startsWith(runner.os, 'macOS')
@@ -42,7 +42,7 @@ jobs:
           channels: conda-forge
 
       - name: Prepare
-        run: conda install conda-build conda-verify pytest
+        run: conda install conda-build conda-verify pytest 
 
       - name: Build
         run: conda build conda.recipe
