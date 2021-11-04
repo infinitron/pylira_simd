@@ -1,4 +1,4 @@
-import scikit_build_example as m
+import pylira_simd as m
 
 
 def test_version():

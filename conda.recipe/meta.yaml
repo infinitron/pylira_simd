@@ -1,5 +1,5 @@
 package:
-  name: scikit_build_example
+  name: pylira_simd
   version: 0.0.1
 
 source:
@@ -27,7 +27,7 @@ requirements:
 
 test:
   imports:
-    - scikit_build_example
+    - pylira_simd
   requires:
     - pytest
   source_files:
