@@ -51,6 +51,4 @@ else()
   set(_pip_args "--user")
 endif()
 
-find_package (Python COMPONENTS Interpreter Development)
-
-install(TARGETS _pylira_simd DESTINATION ${Python_SITEARCH})
+install(TARGETS _pylira_simd DESTINATION .)
