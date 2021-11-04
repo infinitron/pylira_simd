@@ -24,7 +24,7 @@ find_package(pybind11 CONFIG REQUIRED)
 # find_package(Python COMPONENTS Interpreter Development)
 find_package(Python3)
 
-
+include_directories(/usr/local/include /usr/share/R/include/)
 include_directories(src/extern/pybind11/include)
 include_directories(src/extern/lira_simd)
 include_directories(src/extern/highway)
