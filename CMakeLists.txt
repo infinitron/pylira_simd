@@ -26,23 +26,23 @@ include_directories(src/extern/pybind11/include)
 add_subdirectory(src/extern/highway)
 
 # Python method:
-Python_add_library(pylira_simd MODULE src/main.cpp)
+Python_add_library(_pylira_simd MODULE src/main.cpp)
 cmake_policy(SET CMP0069 NEW)
 
-add_dependencies(pylira_simd hwy)
-target_link_libraries(pylira_simd INTERFACE pybind11::headers hwy)
+add_dependencies(_pylira_simd hwy)
+target_link_libraries(_pylira_simd INTERFACE pybind11::headers hwy)
 
-# target_link_libraries(pylira_simd hwy)
-set_target_properties(pylira_simd PROPERTIES
+# target_link_libraries(_pylira_simd hwy)
+set_target_properties(_pylira_simd PROPERTIES
                                 INTERPROCEDURAL_OPTIMIZATION TRUE
                                 CXX_VISIBILITY_PRESET internal
                                 VISIBLITY_INLINES_HIDDEN ON)
-# pybind11_add_module(pylira_simd MODULE src/main.cpp)
-# add_dependencies(pylira_simd hwy)
+# pybind11_add_module(_pylira_simd MODULE src/main.cpp)
+# add_dependencies(_pylira_simd hwy)
 
 
-# target_link_libraries(pylira_simd hwy)
+# target_link_libraries(_pylira_simd hwy)
 
-target_compile_definitions(pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
+target_compile_definitions(_pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-install(TARGETS pylira_simd DESTINATION .)
+install(TARGETS _pylira_simd DESTINATION .)

@@ -9,7 +9,7 @@ int add(int i, int j) {
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(_core, m) {
+PYBIND11_MODULE(_pylira_simd, m) {
     m.doc() = R"pbdoc(
         Pybind11 example plugin
         -----------------------
