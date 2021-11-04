@@ -29,7 +29,7 @@ find_package(Python3)
 
 include_directories(src/extern/pybind11/include)
 
-add_subdirectory(src/extern/pybind11)
+#add_subdirectory(src/extern/pybind11)
 add_subdirectory(src/extern/highway)
 
 # Python method:
