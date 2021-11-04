@@ -1,3 +1,6 @@
 [submodule "src/extern/highway"]
 	path = src/extern/highway
 	url = https://github.com/infinitron/highway
+[submodule "src/extern/pybind11"]
+	path = src/extern/pybind11
+	url = https://github.com/infinitron/pybind11

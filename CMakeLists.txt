@@ -14,12 +14,34 @@ if(SKBUILD)
   list(APPEND CMAKE_PREFIX_PATH "${_tmp_dir}")
 endif()
 
+
+
 # Now we can find pybind11
 find_package(pybind11 CONFIG REQUIRED)
+find_package(Python COMPONENTS Interpreter Development)
+
+include_directories(src/extern/pybind11/include)
+
+#add_subdirectory(src/extern/pybind11)
 add_subdirectory(src/extern/highway)
 
-pybind11_add_module(pylira_simd MODULE src/main.cpp)
+# Python method:
+Python_add_library(pylira_simd src/main.cpp)
+cmake_policy(SET CMP0069 NEW)
+
 add_dependencies(pylira_simd hwy)
+target_link_libraries(pylira_simd INTERFACE pybind11::headers hwy)
+
+# target_link_libraries(pylira_simd hwy)
+set_target_properties(pylira_simd PROPERTIES
+                                INTERPROCEDURAL_OPTIMIZATION TRUE
+                                CXX_VISIBILITY_PRESET internal
+                                VISIBLITY_INLINES_HIDDEN ON)
+# pybind11_add_module(pylira_simd MODULE src/main.cpp)
+# add_dependencies(pylira_simd hwy)
+
+
+# target_link_libraries(pylira_simd hwy)
 
 target_compile_definitions(pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
