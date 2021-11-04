@@ -27,6 +27,14 @@ jobs:
         with:
           submodules: True
 
+    - name: Install dependencies (Linux)
+      if: startsWith(runner.os, 'Linux')
+      run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+
+    - name: Install dependencies (macOS)
+      if: startsWith(runner.os, 'macOS')
+      run: brew install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+
       - name: Get conda
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
@@ -38,9 +46,6 @@ jobs:
 
       - name: Build
         run: conda build conda.recipe
-
-      - name: Install dependencies
-        run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
 
       - name: Install
         run: conda install -c ${CONDA_PREFIX}/conda-bld/ pylira_simd
