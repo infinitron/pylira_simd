@@ -18,9 +18,9 @@ endif()
 find_package(pybind11 CONFIG REQUIRED)
 add_subdirectory(src/extern/highway)
 
-pybind11_add_module(_core MODULE src/main.cpp)
-add_dependencies(_core highway)
+pybind11_add_module(pylira_simd MODULE src/main.cpp)
+add_dependencies(pylira_simd hwy)
 
-target_compile_definitions(_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
+target_compile_definitions(pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-install(TARGETS _core DESTINATION .)
+install(TARGETS pylira_simd DESTINATION .)
