@@ -29,7 +29,7 @@ jobs:
 
       - name: Install dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
-        run: sudo apt-get -y install tbb r-base-dev r-base electric-fence r-mathlib
+        run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
 
       - name: Install dependencies (macOS)
         if: startsWith(runner.os, 'macOS')

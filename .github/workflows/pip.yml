@@ -49,7 +49,7 @@ jobs:
 
     - name: Install dependencies (macOS)
       if: startsWith(runner.os, 'macOS')
-      run: brew install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+      run: brew install tbb r-base-dev r-base electric-fence r-mathlib
 
     - name: Build and install
       run: pip install --verbose .[test]
