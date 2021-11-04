@@ -14,8 +14,8 @@ from setuptools import find_packages
 
 setup(
     name="pylira_simd",
-    version="0.0.1",
-    description="Python bindings for LIRA with SIMD",
+    version="0.1.0",
+    description="Python bindings for LIRA with SIMD intrinsics.",
     author="Karthik Reddy",
     license="MIT",
     packages=find_packages(where="src"),
