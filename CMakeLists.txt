@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15...3.19)
 
-project(pylira_simd VERSION "0.0.1")
+project(pylira_simd VERSION "0.1.0")
 
 
 set(CMAKE_CXX_STANDARD 17)
@@ -19,38 +19,38 @@ if(SKBUILD)
   list(APPEND CMAKE_PREFIX_PATH "${_tmp_dir}")
 endif()
 
-
-
-# Now we can find pybind11
-#find_package(Python COMPONENTS Interpreter Development)
 find_package(pybind11 CONFIG REQUIRED)
-find_package(Python3)
+find_package(Python ${PYTHON_VERSION} REQUIRED COMPONENTS Development)
 
 
 include_directories(src/extern/pybind11/include)
+include_directories(src/extern/lira_simd)
+include_directories(src/extern/highway)
+include_directories(/usr/local/include /usr/share/R/include/)
 
-#add_subdirectory(src/extern/pybind11)
+
 add_subdirectory(src/extern/highway)
 
-# Python method:
-#Python_add_library(_pylira_simd MODULE src/main.cpp)
+# lira.cpp file needs its absolute location for dynamic dispatch
+get_filename_component(_LIRA_SIMD_CPP_FILE_ src/extern/lira_simd/lira.cpp REALPATH)
+add_compile_definitions(_LIRA_SIMD_CPP_FILE_="${_LIRA_SIMD_CPP_FILE_}")
+
 pybind11_add_module(_pylira_simd MODULE src/main.cpp)
-# add_library(_pylira_simd MODULE src/main.cpp)
+
 add_dependencies(_pylira_simd hwy)
-target_link_libraries(_pylira_simd PUBLIC hwy)
+add_compile_options(-fPIC -O2)      
+target_link_libraries(_pylira_simd PUBLIC hwy R Rmath pthread tbb efence)
 
-# cmake_policy(SET CMP0069 NEW)
-# target_link_libraries(_pylira_simd hwy)
-# set_target_properties(_pylira_simd PROPERTIES
-#                                 INTERPROCEDURAL_OPTIMIZATION TRUE
-#                                 CXX_VISIBILITY_PRESET internal
-#                                 VISIBLITY_INLINES_HIDDEN ON)
-# pybind11_add_module(_pylira_simd MODULE src/main.cpp)
-# add_dependencies(_pylira_simd hwy)
-
-
-#  target_link_libraries(_pylira_simd hwy)
 
 target_compile_definitions(_pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-install(TARGETS _pylira_simd DESTINATION .)
+# detect virtualenv and set Pip args accordingly
+if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
+  set(_pip_args)
+else()
+  set(_pip_args "--user")
+endif()
+
+find_package (Python COMPONENTS Interpreter Development)
+
+install(TARGETS _pylira_simd DESTINATION ${Python_SITEARCH})
