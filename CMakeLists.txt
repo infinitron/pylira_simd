@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.15...3.19)
 
 project(pylira_simd VERSION "0.0.1")
 
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 if(SKBUILD)
   # Scikit-Build does not add your site-packages to the search path
   # automatically, so we need to add it _or_ the pybind11 specific directory
