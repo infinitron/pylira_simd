@@ -29,7 +29,11 @@ include_directories(src/extern/pybind11/include)
 include_directories(src/extern/lira_simd)
 include_directories(src/extern/highway)
 
-link_directories(/usr/lib/R/lib)
+execute_process(COMMAND bash -c "Rscript -e \"R.home('lib')\" |  awk '{print $2}'" OUTPUT_VARIABLE R_LIB_PATH OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ECHO STDOUT)
+execute_process(COMMAND bash -c "Rscript -e \"R.home('include')\" |  awk '{print $2}'" OUTPUT_VARIABLE R_INCLUDE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ECHO STDOUT)
+
+link_directories("${R_LIB_PATH}")
+include_directories("${R_INCLUDE_PATH}")
 
 add_subdirectory(src/extern/highway)
 

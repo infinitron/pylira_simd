@@ -42,6 +42,10 @@ jobs:
       - name: Install R dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
         run: conda install -c r r-base
+      
+      - name: Install RMath dependencies (Linux)
+        if: startsWith(runner.os, 'Linux')
+        run: conda install -c hcc r-mathlib
 
       - name: Install dependencies (macOS)
         if: startsWith(runner.os, 'macOS')
