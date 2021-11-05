@@ -16,3 +16,6 @@ profile = "black"
 testpaths=[
     "tests"
 ]
+
+[tool.cibuildwheel.linux]
+before-all = "sudo apt-get install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
