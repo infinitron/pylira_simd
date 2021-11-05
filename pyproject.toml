@@ -18,4 +18,7 @@ testpaths=[
 ]
 
 [tool.cibuildwheel.linux]
-before-all = "yum install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
+before-all = [
+    "yum install epel-release"
+    "yum install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
+    ]
