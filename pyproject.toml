@@ -16,14 +16,3 @@ profile = "black"
 testpaths=[
     "tests"
 ]
-
-[tool.cibuildwheel]
-manylinux-x86_64_image = "manylinux2_24"
-manylinux-i686-image = "manylinux2_24"
-manylinux-pypy_x86_64-image = "manylinux2_24"
-manylinux-pypy_i686-image = "manylinux2_24"
-
-[tool.cibuildwheel.linux]
-before-all = [
-    "apt-get install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
-    ]
