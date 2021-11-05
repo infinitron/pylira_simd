@@ -56,8 +56,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Install dependencies
-      run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib
+    # - name: Install dependencies
+    #   run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib
 
     - uses: pypa/cibuildwheel@v2.2.2
 
