@@ -18,4 +18,4 @@ testpaths=[
 ]
 
 [tool.cibuildwheel.linux]
-before-all = "sudo apt-get install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
+before-all = "apt-get install -y libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib"
