@@ -3,7 +3,8 @@ pylira_simd
 
 |      CI              | status |
 |----------------------|--------|
-| pip builds           | [![Pip Actions Status][actions-pip-badge]][actions-pip-link] |
+| pip builds           | ![example workflow](https://github.com/infinitron/pylira_simd/actions/workflows/pip.yml/badge.svg)
+ |
 
 Python bindings for [LIRA](https://github.com/astrostat/pylira/) with SIMD intrinsics.
 
