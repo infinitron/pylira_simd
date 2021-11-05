@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
-        run: sudo apt-get -y install libtbb-dev r-base-dev r-base-core r-base electric-fence r-mathlib
+        run: sudo yum install libtbb-dev r-base-dev r-base-core r-base electric-fence r-mathlib
 
       - name: Install R dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
