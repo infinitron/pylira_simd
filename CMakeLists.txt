@@ -28,8 +28,8 @@ include_directories(/usr/local/include /usr/share/R/include/)
 include_directories(src/extern/pybind11/include)
 include_directories(src/extern/lira_simd)
 include_directories(src/extern/highway)
-include_directories(/usr/local/include /usr/share/R/include/)
 
+link_directories(/usr/lib/R/lib)
 
 add_subdirectory(src/extern/highway)
 
