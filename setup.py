@@ -1,7 +1,6 @@
 import sys
 from setuptools import find_packages
 
-
 try:
     from skbuild import setup
 except ImportError:
@@ -11,7 +10,6 @@ except ImportError:
         file=sys.stderr,
     )
     raise
-
 
 setup(
     name="pylira_simd",
@@ -24,6 +22,6 @@ setup(
     package_data={"pylira_simd": ["sample_data/*.fits"]},
     include_package_data=True,
     cmake_install_dir="src/pylira_simd",
-    extras_require={"test": ["pytest","astropy","numpy","tabulate"]},
+    extras_require={"test": ["pytest", "astropy", "numpy", "tabulate"]},
     python_requires=">=3.9",
 )

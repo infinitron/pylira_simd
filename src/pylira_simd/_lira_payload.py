@@ -33,8 +33,26 @@ class LiraPayload:
     use_float = None
     use_prag_bayesian_psf = None
 
-    def __init__(self, observation: Union[str, npt.NDArray[np.number]], baseline: Union[str, npt.NDArray[np.number]],
-                 psf: Union[str, npt.NDArray[np.number]], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: Union[str, npt.NDArray[np.number]] = None, start_map: Union[str, npt.NDArray[np.number]] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: float = 1.0, ms_ttlcnt_exp: float = 0.05, ms_al_kap1: float = 0.0, ms_al_kap2: float = 1000.0, ms_al_kap3: float = 3.0, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
+    def __init__(self,
+                 observation: Union[str, npt.NDArray[np.number]],
+                 baseline: Union[str, npt.NDArray[np.number]],
+                 psf: Union[str, npt.NDArray[np.number]],
+                 out_img_file: str,
+                 out_param_file: str,
+                 alpha_init: npt.NDArray[np.number] = None,
+                 max_iter: int = 3000,
+                 thin: int = 1,
+                 burn_in: int = 1000,
+                 exp_map: Union[str, npt.NDArray[np.number]] = None,
+                 start_map: Union[str, npt.NDArray[np.number]] = None,
+                 fit_bkgscl: bool = True,
+                 ms_ttlcnt_pr: float = 1.0,
+                 ms_ttlcnt_exp: float = 0.05,
+                 ms_al_kap1: float = 0.0,
+                 ms_al_kap2: float = 1000.0,
+                 ms_al_kap3: float = 3.0,
+                 use_float: bool = True,
+                 use_prag_bayesian_psf: bool = False) -> None:
 
         self.observation = observation
         self.baseline = baseline
@@ -57,8 +75,25 @@ class LiraPayload:
         self.use_prag_bayesian_psf = bool(use_prag_bayesian_psf)
 
     def launch_image_analysis(self):
-        return image_analysis(observed_im=self.observation, start_im=self.start_map, psf_im=self.psf, expmap_im=self.exp_map, baseline_im=self.baseline, out_img_file=self.out_img_file, out_param_file=self.out_param_file, alpha_init=self.alpha_init, max_iter=self.max_iter, burn_in=self.burn_in,
-                              save_thin=self.thin, fit_bkgscl=self.fit_bkgscl, ms_ttlcnt_pr=self.ms_ttlcnt_pr, ms_ttlcnt_exp=self.ms_ttlcnt_exp, ms_al_kap1=self.ms_al_kap1, ms_al_kap2=self.ms_al_kap2, ms_al_kap3=self.ms_al_kap3, use_float=self.use_float, use_prag_bayesian=self.use_prag_bayesian_psf)
+        return image_analysis(observed_im=self.observation,
+                              start_im=self.start_map,
+                              psf_im=self.psf,
+                              expmap_im=self.exp_map,
+                              baseline_im=self.baseline,
+                              out_img_file=self.out_img_file,
+                              out_param_file=self.out_param_file,
+                              alpha_init=self.alpha_init,
+                              max_iter=self.max_iter,
+                              burn_in=self.burn_in,
+                              save_thin=self.thin,
+                              fit_bkgscl=self.fit_bkgscl,
+                              ms_ttlcnt_pr=self.ms_ttlcnt_pr,
+                              ms_ttlcnt_exp=self.ms_ttlcnt_exp,
+                              ms_al_kap1=self.ms_al_kap1,
+                              ms_al_kap2=self.ms_al_kap2,
+                              ms_al_kap3=self.ms_al_kap3,
+                              use_float=self.use_float,
+                              use_prag_bayesian=self.use_prag_bayesian_psf)
 
     def _get_image_data(self, image: Union[str, npt.NDArray[np.number]]):
         if isinstance(image, np.ndarray):
@@ -106,7 +141,8 @@ class LiraPayload:
         if image is None:
             if self._observation is None:
                 raise Exception(
-                    "exp_map cannot be empty if an input observation is not provided")
+                    "exp_map cannot be empty if an input observation is not provided"
+                )
             self._exp_map = np.ones(self._observation.shape)
         else:
             self._exp_map = self._get_image_data(image)
@@ -120,7 +156,8 @@ class LiraPayload:
         if image is None:
             if self._observation is None:
                 raise Exception(
-                    "start_map cannot be empty if an input observation is not provided")
+                    "start_map cannot be empty if an input observation is not provided"
+                )
             self._start_map = np.ones(self._observation.shape)
         else:
             self._start_map = self._get_image_data(image)
@@ -135,14 +172,14 @@ class LiraPayload:
             raise Exception(
                 "alpha_init cannot be set with an empty observation")
         img_dim = self._observation.shape[0]
-        if(((img_dim-1) & img_dim) != 0):
-            raise Exception(
-                "The input image dimensions must be a power of 2")
+        if (((img_dim - 1) & img_dim) != 0):
+            raise Exception("The input image dimensions must be a power of 2")
         im_dim_power2 = np.log2(img_dim)
 
-        if(alpha_init_val is None):
-            self._alpha_init = np.asarray(
-                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))]).astype('float64')
+        if (alpha_init_val is None):
+            self._alpha_init = np.asarray([
+                0.3 + i * 0.1 for i in range(np.log2(img_dim).astype(int))
+            ]).astype('float64')
         else:
             if alpha_init_val.shape[0] == im_dim_power2:
                 self._alpha_init = alpha_init_val.astype('float64')
@@ -153,7 +190,7 @@ class LiraPayload:
 
     @thin.setter
     def thin(self, thin_val):
-        if(thin_val > self.max_iter):
+        if (thin_val > self.max_iter):
             raise Exception(
                 f"thin cannot be greater than max_iter (={self.max_iter})")
         self._thin = thin_val
@@ -164,10 +201,10 @@ class LiraPayload:
 
     @burn_in.setter
     def burn_in(self, burn_in_val):
-        if(burn_in_val > self.max_iter):
+        if (burn_in_val > self.max_iter):
             raise Exception(
                 f"thin cannot be greater than max_iter (={self.max_iter})")
-        self._burn_in=burn_in_val
+        self._burn_in = burn_in_val
 
 
 def get_test_payload():
@@ -176,4 +213,10 @@ def get_test_payload():
     The outputs will be stored in the folder LIRA_outputs.
     """
     test_data = get_sample_images()
-    return LiraPayload(observation=test_data.img_64x64, baseline=test_data.baseline_64x64, psf=test_data.psf_33x33, out_img_file="LIRA_outputs/img_64x64.out", out_param_file="LIRA_outputs/img_64x64.param", exp_map=test_data.expmap_64x64, start_map=test_data.start_64x64)
+    return LiraPayload(observation=test_data.img_64x64,
+                       baseline=test_data.baseline_64x64,
+                       psf=test_data.psf_33x33,
+                       out_img_file="LIRA_outputs/img_64x64.out",
+                       out_param_file="LIRA_outputs/img_64x64.param",
+                       exp_map=test_data.expmap_64x64,
+                       start_map=test_data.start_64x64)
