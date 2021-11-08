@@ -142,7 +142,7 @@ class LiraPayload:
 
         if(alpha_init_val is None):
             self._alpha_init = np.asarray(
-                [0.3+i*0.1 for i in range(np.log2(img_dim))])
+                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))])
         else:
             if alpha_init_val.shape[0] == im_dim_power2:
                 self._alpha_init = alpha_init_val
