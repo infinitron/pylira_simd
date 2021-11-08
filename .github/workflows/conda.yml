@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
-        run: sudo apt-get -y install libtbb-dev r-base-dev r-base-core r-base electric-fence r-mathlib
+        run: sudo apt-get -y install libtbb-dev r-base-dev r-base-core r-base r-mathlib
 
       - name: Install R dependencies (Linux)
         if: startsWith(runner.os, 'Linux')
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install dependencies (macOS)
         if: startsWith(runner.os, 'macOS')
-        run: brew install tbb r electric-fence
+        run: brew install tbb r 
 
       - name: Get conda
         uses: conda-incubator/setup-miniconda@v2.1.1

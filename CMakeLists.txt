@@ -38,7 +38,7 @@ pybind11_add_module(_pylira_simd MODULE src/main.cpp)
 
 add_dependencies(_pylira_simd hwy)
 add_compile_options(-fPIC -O2)      
-target_link_libraries(_pylira_simd PUBLIC hwy R Rmath pthread tbb efence)
+target_link_libraries(_pylira_simd PUBLIC hwy R Rmath pthread tbb)
 
 
 target_compile_definitions(_pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})

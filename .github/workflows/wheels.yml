@@ -57,7 +57,7 @@ jobs:
           ${{ runner.os }}-pip-
 
     # - name: Install dependencies
-    #   run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core electric-fence r-mathlib
+    #   run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core r-mathlib
 
     - uses: pypa/cibuildwheel@v2.2.2
 

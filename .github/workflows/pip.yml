@@ -46,11 +46,11 @@ jobs:
 
     - name: Install dependencies (Linux)
       if: startsWith(runner.os, 'Linux')
-      run: sudo apt-get -y install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+      run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-mathlib
 
     - name: Install dependencies (macOS)
       if: startsWith(runner.os, 'macOS')
-      run: brew install tbb r electric-fence 
+      run: brew install tbb r  
 
     - name: Build and install
       run: pip install --verbose .[test]
