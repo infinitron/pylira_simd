@@ -37,8 +37,8 @@ class LiraPayload:
                  psf: Union[str, npt.NDArray[np.number]], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: Union[str, npt.NDArray[np.number]] = None, start_map: Union[str, npt.NDArray[np.number]] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: float = 1, ms_ttlcnt_exp: float = 0.05, ms_al_kap1: float = 0, ms_al_kap2: float = 1000, ms_al_kap3: float = 3, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
 
         self.observation = observation
-        self.baseline = self._get_image_data(baseline)
-        self.psf = self._get_image_data(psf)
+        self.baseline = baseline
+        self.psf = psf
         self.exp_map = exp_map
         self.start_map = start_map
         self.alpha_init = alpha_init
@@ -175,4 +175,4 @@ def get_test_payload():
     The outputs will be stored in the folder LIRA_outputs.
     """
     test_data = get_sample_images()
-    return LiraPayload(observation=test_data.img_64x64, baseline=test_data.baseline_64x64, psf=test_data.psf_33x33, out_img_file="LIRA_outputs/img_64x64.out", out_param_file="LIRA_outputs/img_64x64.param")
+    return LiraPayload(observation=test_data.img_64x64, baseline=test_data.baseline_64x64, psf=test_data.psf_33x33, out_img_file="LIRA_outputs/img_64x64.out", out_param_file="LIRA_outputs/img_64x64.param",exp_map=test_data.expmap_64x64,start_map=test_data.start_64x64)
