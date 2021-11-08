@@ -37,4 +37,4 @@ def test_run_lira():
     test_payload.out_param_file="out.param"
     test_payload.out_img_file="img.out"
     #check if it runs without exceptions
-    test_payload.run_image_analysis()
+    assert test_payload.run_image_analysis() is not None
