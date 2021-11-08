@@ -33,8 +33,6 @@ class LiraPayload:
     use_float = None
     use_prag_bayesian_psf = None
 
-
-
     def __init__(self, observation: Union[str, npt.NDArray[np.number]], baseline: Union[str, npt.NDArray[np.number]],
                  psf: Union[str, npt.NDArray[np.number]], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: Union[str, npt.NDArray[np.number]] = None, start_map: Union[str, npt.NDArray[np.number]] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: float = 1, ms_ttlcnt_exp: float = 0.05, ms_al_kap1: float = 0, ms_al_kap2: float = 1000, ms_al_kap3: float = 3, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
 
@@ -62,7 +60,7 @@ class LiraPayload:
         return image_analysis(self.observation, self.start_map, self.psf, self.exp_map, self.baseline, self.out_img_file, self.out_param_file, self.alpha_init, self.max_iter, self.burn_in,
                               self.thin, self.fit_bkgscl, self.ms_ttlcnt_pr, self.ms_ttlcnt_exp, self.ms_al_kap1, self.ms_al_kap2, self.ms_al_kap3, self.use_float, self.use_prag_bayesian_psf)
 
-    def _get_image_data(self, image: str | npt.NDArray[np.number]):
+    def _get_image_data(self, image: Union(str, npt.NDArray[np.number])):
         if isinstance(image, np.ndarray):
             return image
         elif type(image) is str:
@@ -74,7 +72,6 @@ class LiraPayload:
 
     def describe_payload(self):
         _describe_payload(self)
-
 
     @property
     def observation(self):
