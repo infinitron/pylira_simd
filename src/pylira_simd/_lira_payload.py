@@ -57,15 +57,15 @@ class LiraPayload:
         self.use_prag_bayesian_psf = bool(use_prag_bayesian_psf)
 
     def run_image_analysis(self):
-        return image_analysis(self.observation, self.start_map, self.psf, self.exp_map, self.baseline, self.out_img_file, self.out_param_file, self.alpha_init, self.max_iter, self.burn_in,
-                              self.thin, self.fit_bkgscl, self.ms_ttlcnt_pr, self.ms_ttlcnt_exp, self.ms_al_kap1, self.ms_al_kap2, self.ms_al_kap3, self.use_float, self.use_prag_bayesian_psf)
+        return image_analysis(observed_im=self.observation, start_im=self.start_map, psf_im=self.psf, expmap_im=self.exp_map, baseline_im=self.baseline, out_img_file=self.out_img_file, out_param_file=self.out_param_file, alpha_init=self.alpha_init, max_iter=self.max_iter, burn_in=self.burn_in,
+                              save_thin=self.thin, fit_bkgscl=self.fit_bkgscl, ms_ttlcnt_pr=self.ms_ttlcnt_pr, ms_ttlcnt_exp=self.ms_ttlcnt_exp, ms_al_kap1=self.ms_al_kap1, ms_al_kap2=self.ms_al_kap2, ms_al_kap3=self.ms_al_kap3, use_float=self.use_float, use_prag_bayesian=self.use_prag_bayesian_psf)
 
     def _get_image_data(self, image: Union[str, npt.NDArray[np.number]]):
         if isinstance(image, np.ndarray):
-            return image.astype(float)
+            return image.astype('float64')
         elif type(image) is str:
             with fits.open(image) as hdul:
-                return hdul[0].data.astype(float)
+                return hdul[0].data.astype('float64')
         else:
             raise ValueError(
                 "Input image must be either a file name or a numpy array")
@@ -142,10 +142,10 @@ class LiraPayload:
 
         if(alpha_init_val is None):
             self._alpha_init = np.asarray(
-                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))]).astype(float)
+                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))]).astype('float64')
         else:
             if alpha_init_val.shape[0] == im_dim_power2:
-                self._alpha_init = alpha_init_val.astype(float)
+                self._alpha_init = alpha_init_val.astype('float64')
 
     @property
     def thin(self):
@@ -175,4 +175,4 @@ def get_test_payload():
     The outputs will be stored in the folder LIRA_outputs.
     """
     test_data = get_sample_images()
-    return LiraPayload(observation=test_data.img_64x64, baseline=test_data.baseline_64x64, psf=test_data.psf_33x33, out_img_file="LIRA_outputs/img_64x64.out", out_param_file="LIRA_outputs/img_64x64.param",exp_map=test_data.expmap_64x64,start_map=test_data.start_64x64)
+    return LiraPayload(observation=test_data.img_64x64, baseline=test_data.baseline_64x64, psf=test_data.psf_33x33, out_img_file="LIRA_outputs/img_64x64.out", out_param_file="LIRA_outputs/img_64x64.param", exp_map=test_data.expmap_64x64, start_map=test_data.start_64x64)
