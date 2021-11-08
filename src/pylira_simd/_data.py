@@ -5,7 +5,7 @@ import numpy as np
 
 def _read_sample_fits(file_name):
     pkg = importlib_resources.files("pylira_simd")
-    with importlib_resources.as_file(pkg / "sample_data" / "img_64x64.fits") as img_path:
+    with importlib_resources.as_file(pkg / "sample_data" / file_name) as img_path:
         with fits.open(img_path) as hdul:
             return hdul[0].data
 
