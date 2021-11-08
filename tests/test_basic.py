@@ -24,7 +24,7 @@ def test_test_payload():
     test_payload = m.get_test_payload()
     sample_images = m.get_sample_images()
     assert (test_payload.observation==sample_images.img_64x64).all()
-    assert (test_payload.psf==sample_images.psf).all()
+    assert (test_payload.psf==sample_images.psf_33x33).all()
     assert (test_payload.baseline==sample_images.baseline_64x64).all()
     assert (test_payload.exp_map==sample_images.expmap_64x64).all()
     assert (test_payload.start_map==sample_images.start_64x64).all()
