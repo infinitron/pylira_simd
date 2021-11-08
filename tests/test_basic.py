@@ -28,3 +28,13 @@ def test_test_payload():
     assert (test_payload.baseline==sample_images.baseline_64x64).all()
     assert (test_payload.exp_map==sample_images.expmap_64x64).all()
     assert (test_payload.start_map==sample_images.start_64x64).all()
+
+def test_run_lira():
+    test_payload = m.get_test_payload()
+    test_payload.max_iter=5
+    test_payload.burn_in=1
+    test_payload.thin=1
+    test_payload.out_param_file="out.param"
+    test_payload.out_img_file="img.out"
+    #check if it runs without exceptions
+    test_payload.run_image_analysis()
