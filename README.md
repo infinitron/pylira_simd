@@ -10,11 +10,15 @@ Python bindings for [LIRA](https://github.com/astrostat/pylira/) with SIMD intri
 Installation
 ------------
 
+## Linux
 ```bash
-sudo apt install libtbb-dev r-base-dev r-base electric-fence r-mathlib
+sudo apt install libtbb-dev r-base-dev r-base r-mathlib
 git clone --recursive https://github.com/infinitron/pylira_simd
 pip install ./pylira_simd
 ```
+
+## Mac OS
+--TBU--
 
 Usage
 ------------

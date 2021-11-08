@@ -46,3 +46,7 @@ def test_run_lira():
     test_payload.use_float = True
     assert test_payload.launch_image_analysis() is not None
 
+def test_describe_payload():
+    test_payload = m.get_test_payload()
+    assert test_payload.describe_payload() is None
+
