@@ -62,7 +62,7 @@ class LiraPayload:
 
     def _get_image_data(self, image: Union[str, npt.NDArray[np.number]]):
         if isinstance(image, np.ndarray):
-            return image
+            return image.astype(float)
         elif type(image) is str:
             with fits.open(image) as hdul:
                 return hdul[0].data.astype(float)
