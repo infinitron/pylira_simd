@@ -65,7 +65,7 @@ class LiraPayload:
             return image
         elif type(image) is str:
             with fits.open(image) as hdul:
-                return hdul[0].data
+                return hdul[0].data.astype(float)
         else:
             raise ValueError(
                 "Input image must be either a file name or a numpy array")
@@ -142,10 +142,10 @@ class LiraPayload:
 
         if(alpha_init_val is None):
             self._alpha_init = np.asarray(
-                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))])
+                [0.3+i*0.1 for i in range(np.log2(img_dim).astype(int))]).astype(float)
         else:
             if alpha_init_val.shape[0] == im_dim_power2:
-                self._alpha_init = alpha_init_val
+                self._alpha_init = alpha_init_val.astype(float)
 
     @property
     def thin(self):
