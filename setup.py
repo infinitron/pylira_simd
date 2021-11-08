@@ -21,7 +21,7 @@ setup(
     license="MIT",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    package_data={"pylira_simd": "sample_data/*.fits"},
+    package_data={"pylira_simd": ["sample_data/*.fits"]},
     include_package_data=True,
     cmake_install_dir="src/pylira_simd",
     extras_require={"test": ["pytest"]},
