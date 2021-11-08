@@ -56,7 +56,7 @@ class LiraPayload:
         self.use_float = bool(use_float)
         self.use_prag_bayesian_psf = bool(use_prag_bayesian_psf)
 
-    def run_image_analysis(self):
+    def launch_image_analysis(self):
         return image_analysis(observed_im=self.observation, start_im=self.start_map, psf_im=self.psf, expmap_im=self.exp_map, baseline_im=self.baseline, out_img_file=self.out_img_file, out_param_file=self.out_param_file, alpha_init=self.alpha_init, max_iter=self.max_iter, burn_in=self.burn_in,
                               save_thin=self.thin, fit_bkgscl=self.fit_bkgscl, ms_ttlcnt_pr=self.ms_ttlcnt_pr, ms_ttlcnt_exp=self.ms_ttlcnt_exp, ms_al_kap1=self.ms_al_kap1, ms_al_kap2=self.ms_al_kap2, ms_al_kap3=self.ms_al_kap3, use_float=self.use_float, use_prag_bayesian=self.use_prag_bayesian_psf)
 

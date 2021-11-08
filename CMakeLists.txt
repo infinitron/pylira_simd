@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15...3.19)
 
-project(pylira_simd VERSION "0.1.0")
+project(pylira_simd VERSION "0.2.0")
 
 
 set(CMAKE_CXX_STANDARD 17)
@@ -20,20 +20,12 @@ if(SKBUILD)
 endif()
 
 find_package(pybind11 CONFIG REQUIRED)
-# find_package(Python ${PYTHON_VERSION} REQUIRED COMPONENTS Interpreter Development)
-# find_package(Python COMPONENTS Interpreter Development)
 find_package(Python3)
 
 include_directories(/usr/local/include /usr/share/R/include/)
 include_directories(src/extern/pybind11/include)
 include_directories(src/extern/lira_simd)
 include_directories(src/extern/highway)
-
-# execute_process(COMMAND bash -c "Rscript -e \"R.home('lib')\" |  awk '{print $2}'" OUTPUT_VARIABLE R_LIB_PATH OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ECHO STDOUT)
-# execute_process(COMMAND bash -c "Rscript -e \"R.home('include')\" |  awk '{print $2}'" OUTPUT_VARIABLE R_INCLUDE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ECHO STDOUT)
-
-# link_directories("${R_LIB_PATH}")
-# include_directories("${R_INCLUDE_PATH}")
 
 add_subdirectory(src/extern/highway)
 link_directories(/usr/lib/R/lib)
@@ -50,12 +42,5 @@ target_link_libraries(_pylira_simd PUBLIC hwy R Rmath pthread tbb efence)
 
 
 target_compile_definitions(_pylira_simd PRIVATE VERSION_INFO=${PROJECT_VERSION})
-
-# detect virtualenv and set Pip args accordingly
-# if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
-#   set(_pip_args)
-# else()
-#   set(_pip_args "--user")
-# endif()
 
 install(TARGETS _pylira_simd DESTINATION .)

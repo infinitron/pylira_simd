@@ -2,7 +2,7 @@ import pylira_simd as m
 
 
 def test_version():
-    assert m.__version__ == "0.1.0"
+    assert m.__version__ == "0.2.0"
 
 
 def test_add():
@@ -37,4 +37,4 @@ def test_run_lira():
     test_payload.out_param_file="out.param"
     test_payload.out_img_file="img.out"
     #check if it runs without exceptions
-    assert test_payload.run_image_analysis() is not None
+    assert test_payload.launch_image_analysis() is not None

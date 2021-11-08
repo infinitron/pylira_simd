@@ -49,59 +49,59 @@ def _describe_payload(self):
                 f"{self.start_map.shape[0]}x{self.start_map.shape[1]}"
             ],
             [
-                "Initial smoothing params",
+                "Initial smoothing params (alpha_init)",
                 self.alpha_init
             ],
             [
-                "Max iterations",
+                "Max iterations (max_iter)",
                 self.max_iter
             ],
             [
-                "Output every",
+                "Output every (thin)",
                 f"{self.thin} iterations"
             ],
             [
-                "Burn in iterations",
+                "Burn in iterations (burn_in)",
                 self.burn_in
             ],
             [
-                "Output images path",
+                "Output images path (out_img_file)",
                 self.out_img_file
             ],
             [
-                "Output param file path",
+                "Output param file path (out_param_file)",
                 self.out_param_file
             ],
             [
-                "Fit background scale",
+                "Fit background scale (fit_bkgscl)",
                 self.fit_bkgscl
             ],
             [
-                "Prior on the total count in exposure",
+                "Prior on the total count in exposure (ms_ttlcnt_pr)",
                 self.ms_ttlcnt_pr
             ],
             [
-                "Prior exposure in units of the actual exposure",
+                "Prior exposure in units of the actual exposure (ms_ttlcnt_exp)",
                 self.ms_ttlcnt_exp
             ],
             [
-                r'\kappa_1',
+                r'\kappa_1 (ms_al_kap1)',
                 self.ms_al_kap1
             ],
             [
-                r'\kappa_2',
+                r'\kappa_2 (ms_al_kap2)',
                 self.ms_al_kap2
             ],
             [
-                r'\kappa_3',
+                r'\kappa_3 (ms_al_kap3)',
                 self.ms_al_kap3
             ],
             [
-                "Working precision",
+                "Working precision (use_float)",
                 "float" if self.use_float else "double"
             ],
             [
-                "Use new PSF every 10 iterations",
+                "Use new PSF every 10 iterations (use_prag_bayesian_psf)",
                 self.use_prag_bayesian_psf
             ]
 

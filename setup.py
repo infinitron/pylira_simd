@@ -15,7 +15,7 @@ except ImportError:
 
 setup(
     name="pylira_simd",
-    version="0.1.0",
+    version="0.2.0",
     description="Python bindings for LIRA with SIMD intrinsics.",
     author="Karthik Reddy",
     license="MIT",
