@@ -60,7 +60,7 @@ class LiraPayload:
         return image_analysis(self.observation, self.start_map, self.psf, self.exp_map, self.baseline, self.out_img_file, self.out_param_file, self.alpha_init, self.max_iter, self.burn_in,
                               self.thin, self.fit_bkgscl, self.ms_ttlcnt_pr, self.ms_ttlcnt_exp, self.ms_al_kap1, self.ms_al_kap2, self.ms_al_kap3, self.use_float, self.use_prag_bayesian_psf)
 
-    def _get_image_data(self, image: Union(str, npt.NDArray[np.number])):
+    def _get_image_data(self, image: Union[str, npt.NDArray[np.number]]):
         if isinstance(image, np.ndarray):
             return image
         elif type(image) is str:
