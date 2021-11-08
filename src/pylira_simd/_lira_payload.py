@@ -34,7 +34,7 @@ class LiraPayload:
     use_prag_bayesian_psf = None
 
     def __init__(self, observation: Union[str, npt.NDArray[np.number]], baseline: Union[str, npt.NDArray[np.number]],
-                 psf: Union[str, npt.NDArray[np.number]], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: Union[str, npt.NDArray[np.number]] = None, start_map: Union[str, npt.NDArray[np.number]] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: float = 1, ms_ttlcnt_exp: float = 0.05, ms_al_kap1: float = 0, ms_al_kap2: float = 1000, ms_al_kap3: float = 3, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
+                 psf: Union[str, npt.NDArray[np.number]], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: Union[str, npt.NDArray[np.number]] = None, start_map: Union[str, npt.NDArray[np.number]] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: float = 1.0, ms_ttlcnt_exp: float = 0.05, ms_al_kap1: float = 0.0, ms_al_kap2: float = 1000.0, ms_al_kap3: float = 3.0, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
 
         self.observation = observation
         self.baseline = baseline
@@ -156,7 +156,7 @@ class LiraPayload:
         if(thin_val > self.max_iter):
             raise Exception(
                 f"thin cannot be greater than max_iter (={self.max_iter})")
-        self._burn_in = thin_val
+        self._thin = thin_val
 
     @property
     def burn_in(self):
@@ -167,6 +167,7 @@ class LiraPayload:
         if(burn_in_val > self.max_iter):
             raise Exception(
                 f"thin cannot be greater than max_iter (={self.max_iter})")
+        self._burn_in=burn_in_val
 
 
 def get_test_payload():

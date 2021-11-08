@@ -15,14 +15,14 @@ using d_ptr = double*;
 
 np_arr_d
 image_analysis(
-  np_arr_d t_obs,
-  np_arr_d t_start,
-  np_arr_d t_psf,
-  np_arr_d t_expmap,
-  np_arr_d t_baseline,
-  std::string t_out_file,
-  std::string t_param_file,
-  np_arr_d t_alpha_init,
+  np_arr_d &t_obs,
+  np_arr_d &t_start,
+  np_arr_d &t_psf,
+  np_arr_d &t_expmap,
+  np_arr_d &t_baseline,
+  const std::string &t_out_file,
+  const std::string &t_param_file,
+  np_arr_d &t_alpha_init,
   int t_max_iter,
   int t_burn_in,
   int t_save_thin,
@@ -37,7 +37,7 @@ image_analysis(
 {
     auto obs_buf = t_obs.request();
     auto start_buf = t_start.request();
-    auto psf_buf = t_start.request();
+    auto psf_buf = t_psf.request();
     auto baseline_buf = t_baseline.request();
     auto expmap_buf = t_expmap.request();
     auto alpha_buf = t_alpha_init.request();
