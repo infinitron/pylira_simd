@@ -1,4 +1,6 @@
 import sys
+from setuptools import find_packages
+
 
 try:
     from skbuild import setup
@@ -10,18 +12,18 @@ except ImportError:
     )
     raise
 
-from setuptools import find_packages
 
 setup(
     name="pylira_simd",
-    version="0.1.0",
+    version="0.2.0",
     description="Python bindings for LIRA with SIMD intrinsics.",
     author="Karthik Reddy",
     license="MIT",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    cmake_install_dir="src/pylira_simd",
+    package_data={"pylira_simd": ["sample_data/*.fits"]},
     include_package_data=True,
-    extras_require={"test": ["pytest"]},
+    cmake_install_dir="src/pylira_simd",
+    extras_require={"test": ["pytest","astropy","numpy","tabulate"]},
     python_requires=">=3.9",
 )
