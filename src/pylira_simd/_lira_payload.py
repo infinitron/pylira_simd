@@ -33,7 +33,9 @@ class LiraPayload:
     use_float = None
     use_prag_bayesian_psf = None
 
-    def __init__(self, observation: str | npt.NDArray[np.number], baseline: str | npt.NDArray[np.number],
+
+
+    def __init__(self, observation: Union[str, npt.NDArray[np.number]], baseline: Union[str, npt.NDArray[np.number]],
                  psf: str | npt.NDArray[np.number], out_img_file: str, out_param_file: str, alpha_init: npt.NDArray[np.number] = None, max_iter: int = 3000, thin: int = 1, burn_in: int = 1000, exp_map: str | npt.NDArray[np.number] = None, start_map: str | npt.NDArray[np.number] = None, fit_bkgscl: bool = True, ms_ttlcnt_pr: int | float = 1, ms_ttlcnt_exp: int | float = 0.05, ms_al_kap1: int | float = 0, ms_al_kap2: int | float = 1000, ms_al_kap3: int | float = 3, use_float: bool = True, use_prag_bayesian_psf: bool = False) -> None:
 
         self.observation = observation
