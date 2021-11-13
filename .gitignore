@@ -140,3 +140,10 @@ dmypy.json
 cython_debug/
 
 settings.json
+*.cmake
+_skbuild*
+*.bin
+*.out
+*.param
+*pylira_test.py
+*.swp

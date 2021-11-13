@@ -1,4 +1,5 @@
 import pylira_simd as m
+import numpy as np
 
 
 def test_version():
@@ -49,4 +50,22 @@ def test_run_lira():
 def test_describe_payload():
     test_payload = m.get_test_payload()
     assert test_payload.describe_payload() is None
+
+
+def test_prg_bayes_psf_call():
+    test_payload = m.get_test_payload()
+    test_payload.max_iter = 5
+    test_payload.burn_in = 1
+    test_payload.thin = 1
+    test_payload.out_param_file = "out.param"
+    test_payload.out_img_file = "img.out"
+    # check if it runs without exceptions
+    psf = test_payload.psf.copy()
+    def test_prg_bayes_func(i):
+        return psf
+    test_payload.prag_bayes_psf_func=test_prg_bayes_func
+    test_payload.psf=None
+    test_payload.use_prag_bayesian_psf=True
+    assert test_payload.launch_image_analysis() is not None
+
 
