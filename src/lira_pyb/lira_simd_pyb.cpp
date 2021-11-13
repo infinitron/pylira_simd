@@ -29,7 +29,9 @@ get_pb_psf_wrapper(const prgb_psf_func_t& func)
 {
     return [func](int i) {
         auto arr = func(i);
-        return static_cast<d_ptr>(arr.request().ptr);
+        auto buf = arr.request();
+        if(buf.size>0)return static_cast<d_ptr>(buf.ptr);
+        else return (double*)(nullptr);
     };
 }
 
