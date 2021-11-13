@@ -46,10 +46,11 @@ payload = LiraPayload(inp_image,baseline_image,None,\
 out_im_file,out_param)
 payload.use_prag_bayesian_psf = True
 
+psf_arr = ...
 # define a function that returns a new PSF every 10 iterations
 def prg_bayes_psf(i):
     if i%10 == 0: #i=0 must always return a non-empty PSF
-        return psf #can be from an array, external variable or function
+        return psf_arr[i%10] #can be from an array, external variable or function
     else:
         return np.ndarray((0,0))
 
