@@ -56,4 +56,4 @@ jobs:
       run: pip install --verbose .[test]
 
     - name: Test
-      run: python -m pytest
+      run: pytest
