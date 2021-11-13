@@ -231,6 +231,10 @@ class LiraPayload:
         if not isinstance(func(0), np.ndarray):
             raise ValueError(
                 "The prag_bayes_psf_func must return an np array.")
+        if func(0).size == 0:
+            raise ValueError(
+                "The prag_bayes_psf_func must return a non-zero sized array for i=0"
+            )
         self._prag_bayes_psf_func = func
         self.psf = func(0)  #this will setup the initial params
 
