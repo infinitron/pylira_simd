@@ -59,7 +59,7 @@ jobs:
     # - name: Install dependencies
     #   run: sudo apt-get -y install libtbb-dev r-base-dev r-base r-base-core r-mathlib
 
-    - uses: pypa/cibuildwheel@v2.2.2
+    - uses: pypa/cibuildwheel@v2.10.1
 
     - name: Verify clean directory
       run: git diff --exit-code
