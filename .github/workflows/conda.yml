@@ -52,7 +52,7 @@ jobs:
         run: brew install tbb r 
 
       - name: Get conda
-        uses: conda-incubator/setup-miniconda@v2.1.1
+        uses: conda-incubator/setup-miniconda@v2.2.0
         with:
           python-version: ${{ matrix.python-version }}
           channels: conda-forge
